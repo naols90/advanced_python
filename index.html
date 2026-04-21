@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 11: Python to EXE Lesson</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --code-bg: #282c34;
+            --text: #333;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            background-color: #f4f7f6;
+            overflow: hidden;
+        }
+
+        /* Sidebar Navigation */
+        nav {
+            width: 250px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        nav h2 {
+            font-size: 1.2rem;
+            padding: 0 20px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: #bdc3c7;
+            text-align: left;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        nav button:hover {
+            background: #34495e;
+            color: white;
+        }
+
+        nav button.active {
+            background: #34495e;
+            color: white;
+            border-left: 4px solid var(--accent);
+        }
+
+        /* Main Content Area */
+        main {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            max-width: 900px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .slide.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 { color: var(--primary); border-bottom: 3px solid var(--accent); padding-bottom: 10px; }
+        h2 { color: var(--accent); }
+        
+        ul { line-height: 1.8; font-size: 1.1rem; color: var(--text); }
+        li { margin-bottom: 10px; }
+
+        code {
+            background: var(--code-bg);
+            color: #61afef;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .code-block {
+            background: var(--code-bg);
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            display: block;
+            margin: 20px 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .highlight { color: #e06c75; font-weight: bold; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            nav { width: 100%; height: auto; flex-direction: row; overflow-x: auto; padding: 10px 0; }
+            nav h2 { display: none; }
+            nav button { white-space: nowrap; padding: 10px 15px; }
+            main { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="sidebar">
+    <h2>IT Grade 11</h2>
+    <button onclick="showSlide(0)" class="active">1. Introduction</button>
+    <button onclick="showSlide(1)">2. Why .EXE?</button>
+    <button onclick="showSlide(2)">3. The Tool</button>
+    <button onclick="showSlide(3)">4. Setup Code</button>
+    <button onclick="showSlide(4)">5. The Process</button>
+    <button onclick="showSlide(5)">6. Result</button>
+    <button onclick="showSlide(6)">7. Pro Tip</button>
+</nav>
+
+<main>
+    <div class="slide active">
+        <h1>Deploying Python Apps</h1>
+        <h2>Topic: Converting .PY to .EXE</h2>
+        <p>In this lesson, we learn how to take our Python logic and turn it into a standalone computer application.</p>
+        
+    </div>
+
+    <div class="slide">
+        <h1>Why Convert to .EXE?</h1>
+        <ul>
+            <li><strong>Portability:</strong> Run your app on computers that <strong>don't</strong> have Python installed.</li>
+            <li><strong>Protection:</strong> Users can't accidentally change your code.</li>
+            <li><strong>Professionalism:</strong> It feels like a real product, not just a script.</li>
+            <li><strong>One-Click:</strong> Simply double-click to start!</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h1>The Tool: PyInstaller</h1>
+        <p>We use a library called <code>PyInstaller</code> to bundle our code.</p>
+        <p><strong>To install, run this command in your terminal:</strong></p>
+        <code class="code-block">pip install pyinstaller</code>
+    </div>
+
+    <div class="slide">
+        <h1>Step 1: Prep Your Code</h1>
+        <p>Make sure your Grading App script is ready:</p>
+        <code class="code-block">
+            score = float(input("Average: "))<br>
+            if score >= 90: print("A")<br>
+            # ... rest of your logic ...<br><br>
+            <span class="highlight">input("Press Enter to Exit")</span>
+        </code>
+        <p><strong>Crucial:</strong> Add that last line so the window doesn't close immediately!</p>
+    </div>
+
+    <div class="slide">
+        <h1>Step 2: Conversion</h1>
+        <ol>
+            <li>Open Command Prompt (CMD).</li>
+            <li>Go to your folder: <code>cd MyProject</code></li>
+            <li>Run the command:</li>
+        </ol>
+        <code class="code-block">pyinstaller --onefile grader.py</code>
+        <p>The <code>--onefile</code> flag ensures everything is packed into a single <code>.exe</code>.</p>
+    </div>
+
+    <div class="slide">
+        <h1>Step 3: Where is the App?</h1>
+        <p>Once finished, look at your project folder. You will see a new folder named:</p>
+        <h2 style="text-align: center;">📂 dist</h2>
+        <p>Your <strong>grader.exe</strong> is inside this folder! You can now send this file to your friends.</p>
+    </div>
+
+    <div class="slide">
+        <h1>Pro Tip: Custom Icons</h1>
+        <p>Want your app to look unique on the desktop?</p>
+        <code class="code-block">pyinstaller --onefile --icon=myicon.ico grader.py</code>
+        <ul>
+            <li>Find an <code>.ico</code> file online.</li>
+            <li>Use the command above to attach it to your application.</li>
+        </ul>
+    </div>
+</main>
+
+<script>
+    function showSlide(index) {
+        // Remove active class from all slides and buttons
+        const slides = document.querySelectorAll('.slide');
+        const buttons = document.querySelectorAll('nav button');
+        
+        slides.forEach(s => s.classList.remove('active'));
+        buttons.forEach(b => b.classList.remove('active'));
+
+        // Add active class to selected slide and button
+        slides[index].classList.add('active');
+        buttons[index].classList.add('active');
+    }
+</script>
+
+</body>
+</html>
